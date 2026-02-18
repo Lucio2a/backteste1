@@ -11,10 +11,10 @@ BOLLINGER_STD = 2.0
 
 
 def fetch_data(symbol: str, timeframe: str, limit: int = 1000) -> pd.DataFrame:
-    exchange = ccxt.binance({"enableRateLimit": True})
+    exchange = ccxt.bingx({"enableRateLimit": True})
     ohlcv = exchange.fetch_ohlcv(symbol, timeframe=timeframe, limit=limit)
     if not ohlcv:
-        raise RuntimeError("No OHLCV data returned from Binance.")
+        raise RuntimeError("No OHLCV data returned from BingX.")
 
     df = pd.DataFrame(
         ohlcv,
