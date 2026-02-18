@@ -1,31 +1,27 @@
-name: Backtest Crypto
+name: Backtest
 
 on:
   workflow_dispatch:
-  push:
-    branches:
-      - backtest
 
 jobs:
   run-backtest:
     runs-on: ubuntu-latest
 
     steps:
-      - name: Checkout repository
-        uses: actions/checkout@v4
+      - uses: actions/checkout@v4
 
-      - name: Setup Python 3.11
+      - name: Setup Python
         uses: actions/setup-python@v5
         with:
           python-version: '3.11'
 
       - name: Install dependencies
         run: |
-          python -m pip install --upgrade pip
           pip install -r requirements.txt
 
-      - name: Execute backtest
-        run: python backtest.py
+      - name: Run backtest
+        run: |
+          python backtest.py
 
       - name: Upload artifacts
         uses: actions/upload-artifact@v4
@@ -33,5 +29,5 @@ jobs:
           name: backtest-results
           path: |
             results_summary.txt
-            trades.csv
             equity_curve.png
+            data/btcusdt_5m.csv

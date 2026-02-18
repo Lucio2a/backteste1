@@ -1,5 +1,4 @@
-backtesting.py==0.3.3
+backtesting==0.3.3
 pandas==2.2.2
 numpy==1.26.4
-requests==2.31.0
 matplotlib==3.8.4
