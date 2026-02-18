@@ -1,4 +1,4 @@
-name: Crypto Backtest
+name: Backtest Crypto
 
 on:
   workflow_dispatch:
@@ -14,7 +14,7 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v4
 
-      - name: Set up Python
+      - name: Setup Python 3.11
         uses: actions/setup-python@v5
         with:
           python-version: '3.11'
@@ -24,7 +24,7 @@ jobs:
           python -m pip install --upgrade pip
           pip install -r requirements.txt
 
-      - name: Run backtest
+      - name: Execute backtest
         run: python backtest.py
 
       - name: Upload artifacts
@@ -33,4 +33,5 @@ jobs:
           name: backtest-results
           path: |
             results_summary.txt
+            trades.csv
             equity_curve.png
